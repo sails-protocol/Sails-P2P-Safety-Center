@@ -108,3 +108,6 @@ a:focus-visible,button:focus-visible {outline:2px solid var(--sails-support);out
 
 /* Skip navigation remains keyboard-accessible without forcing horizontal scroll. */
 .skipToContent_fXgn {max-width:calc(100vw - 2rem);white-space:normal;overflow-wrap:anywhere}
+
+/* Docusaurus footer columns must shrink before long external-link labels wrap. */
+@media(max-width:560px){.footer .container,.footer .row,.footer .col,.footer__links,.footer__item{min-width:0;max-width:100%;width:100%;box-sizing:border-box}.footer__link-item{display:inline-block;max-width:100%;overflow-wrap:anywhere}.footer__link-item svg{max-width:1rem}}
