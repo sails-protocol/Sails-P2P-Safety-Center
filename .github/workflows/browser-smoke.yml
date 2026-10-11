@@ -29,7 +29,7 @@ jobs:
           ln -s "$PWD/build" public/Sails-P2P-Safety-Center
           python3 -m http.server 4173 --directory public > /tmp/safety-http.log 2>&1 &
           for i in $(seq 1 30); do
-            if curl -fsS http://127.0.0.1:4173/Sails-P2P-Safety-Center/incident > /dev/null; then exit 0; fi
+            if curl -fsS http://127.0.0.1:4173/Sails-P2P-Safety-Center/incident.html > /dev/null; then exit 0; fi
             sleep 1
           done
           cat /tmp/safety-http.log
