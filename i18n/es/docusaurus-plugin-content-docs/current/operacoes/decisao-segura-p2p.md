@@ -1,5 +1,6 @@
 ---
 id: decisao-segura-p2p
+slug: /decisao-segura-p2p
 title: "Seguridad P2P: lista rápida de decisiones"
 ---
 
