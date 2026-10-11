@@ -1,7 +1,6 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 const copy = {
@@ -13,13 +12,15 @@ export default function SearchPage() {
   const {i18n} = useDocusaurusContext();
   const [query, setQuery] = useState('');
   const [guides, setGuides] = useState([]);
-  const indexUrl = useBaseUrl('/knowledge/index.json');
+  const [loadError, setLoadError] = useState(false);
+  const {siteConfig} = useDocusaurusContext();
+  const indexUrl = siteConfig.baseUrl + 'knowledge/index.json';
   const [title, placeholder, empty] = copy[i18n.currentLocale] || copy.en;
   useEffect(() => {
     let active = true;
     fetch(indexUrl).then(r => {if (!r.ok) throw Error('index unavailable'); return r.json();})
       .then(data => {if (active) setGuides(data.guides || []);})
-      .catch(() => {if (active) setGuides([]);});
+      .catch(() => {if (active) setLoadError(true);});
     return () => {active = false;};
   }, [indexUrl]);
   const matches = useMemo(() => {
@@ -34,7 +35,8 @@ export default function SearchPage() {
     <input id="safety-search" type="search" value={query} onChange={e => setQuery(e.target.value)}
       placeholder={placeholder} autoFocus
       style={{display:'block',width:'100%',maxWidth:720,padding:14,margin:'12px 0 24px',borderRadius:8,border:'1px solid var(--ifm-color-emphasis-400)',background:'var(--ifm-background-color)',color:'var(--ifm-font-color-base)'}}/>
-    {query.trim() && <div aria-live="polite">{matches.length === 0 ? <p>{empty}</p> :
+    {loadError && <p role="alert">Search index unavailable. Please try again later.</p>}
+    {query.trim() && !loadError && <div aria-live="polite">{matches.length === 0 ? <p>{empty}</p> :
       <ul>{matches.map(g => <li key={g.url} className="margin-bottom--md">
         <Link to={g.url}><strong>{g.title}</strong></Link>
       </li>)}</ul>}</div>}
