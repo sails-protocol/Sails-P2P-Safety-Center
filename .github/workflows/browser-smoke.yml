@@ -1,0 +1,38 @@
+name: Safety Center Chromium smoke
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install project dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build localized pages
+        run: npm run build
+      - name: Install browser test runtime
+        run: |
+          npm install --no-save --package-lock=false playwright
+          npx playwright install --with-deps chromium
+      - name: Serve built site under production base path
+        run: |
+          mkdir -p public
+          ln -s "$PWD/build" public/Sails-P2P-Safety-Center
+          npx --yes serve@14 public --listen 4173 --no-clipboard > /tmp/safety-http.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:4173/Sails-P2P-Safety-Center/incident > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/safety-http.log
+          exit 1
+      - name: Verify real Chromium navigation and mobile viewports
+        run: node tests/browser-smoke.mjs
