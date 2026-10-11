@@ -2,7 +2,7 @@
 
 **Purpose:** organize P2P risk education for people and machine readers. Source-derived categories are mapped to the Sails Protocol repository. This is a content backlog, not evidence that a detection or protection is deployed.
 
-## Guides authored in the V2 branch (not yet deployed)
+## Published guides (verify deployment state against the current GitHub Pages release)
 
 | Risk | Public guide | Protocol source |
 | --- | --- | --- |
@@ -42,3 +42,11 @@
 - QVAC-related mitigations must be classified by their actual implementation and configuration status.
 - New public articles must be translated into English (canonical), Portuguese, and Spanish before publication.
 - Public content must not reveal sensitive exploit instructions, personal data, or private dispute evidence.
+
+## V2.1 trust and usability review
+
+- Search relevance: title matches should outrank body matches; loading, no-result and failure states must be distinct in all locales.
+- Accessibility: keyboard focus, readable contrast, mobile navbar and screen-reader feedback require browser verification.
+- Editorial authority: educational advice is not a promise of protocol enforcement, fiat finality, automatic fraud detection or arbitration outcome.
+- Priority audiences: beginners, professional merchants and prospective arbitrators. Guidance about arbitrator collateral, selection and sanctions must remain conceptual until the protocol has an approved, evidenced policy.
+- Publication gate: each new article requires EN/PT-BR/ES parity, source review, build checks and public route checks.

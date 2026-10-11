@@ -1,37 +1,30 @@
 ---
 id: release-checklist
-title: Checklist de publicação
+title: Publication verification checklist
 sidebar_position: 100
 ---
 
-# Checklist de publicação
+# Publication verification checklist
 
-Este checklist é um documento de engenharia. **Não implica que o site esteja publicado.**
+This checklist is a release gate, not a claim that the current branch is deployed.
 
-## Gate técnico
+## Technical gate
+- [ ] Exact-head GitHub Actions build, tests and publication checks succeed.
+- [ ] Confirm every new guide is present in EN, PT-BR and ES with the intended canonical routes.
+- [ ] Confirm the generated knowledge index, sitemaps, localized llms.txt and direct links include new guides.
+- [ ] Test search with title matches, content matches, no results, load errors and keyboard navigation.
+- [ ] Test navbar and articles at mobile widths and with visible keyboard focus.
 
-- [x] Primeiro build Docusaurus aprovado no GitHub Actions (PR #1, commit ec1c96b).
-- [x] Revalidar o CI no HEAD final do PR #1 (GitHub Actions, sucesso).
-- [x] Gerar e versionar `package-lock.json`, mudar a instalação de CI para `npm ci`.
-- [ ] Revisar navegação, responsividade, acessibilidade e links em preview.
-- [ ] Confirmar que não há segredos nem informações pessoais nos artigos.
+## Editorial gate
+- [ ] Verify statements about Sails Protocol against current normative source and deployment evidence.
+- [ ] Distinguish general safety guidance, proposed policy, approved policy and implemented functionality.
+- [ ] Review privacy, payment-method differences, accessibility and translations.
+- [ ] Confirm arbitration guidance does not imply live collateral, slashing or governance.
 
-## Gate editorial
+## Production gate
+- [ ] Merge only after the above checks are recorded.
+- [ ] Confirm GitHub Pages deployment succeeds on the merged main commit.
+- [ ] Check public routes and mobile navigation on the deployed site.
+- [ ] Record release SHA and follow-up issues for any checks that could not be performed.
 
-- [ ] Revisar a redação dos guias em português.
-- [ ] Confirmar que orientações gerais não são apresentadas como garantias implementadas.
-- [ ] Confirmar links para políticas normativas do Sails Protocol quando necessários.
-- [ ] Definir licença do conteúdo educativo separadamente da licença do código.
-
-## Publicação
-
-- [ ] Em GitHub Settings → Pages, escolher **Source: GitHub Actions**.
-- [x] Aprovar PR #1 e realizar merge na `main` após build verde (1d6b3da).
-- [ ] Confirmar sucesso do job de deploy e acesso a https://sails-protocol.github.io/Sails-P2P-Safety-Center/.
-- [ ] Testar links diretos para artigos, navegação móvel e HTTPS.
-
-## Pós-publicação
-
-- [ ] Expandir o catálogo por cenários com revisão.
-- [ ] Planejar busca e localização EN/ES.
-- [ ] Definir revisão periódica dos artigos e responsáveis.
+A successful CI build is necessary but does not replace human editorial and browser verification.
