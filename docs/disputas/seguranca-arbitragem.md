@@ -1,5 +1,6 @@
 ---
 id: seguranca-arbitragem
+slug: /seguranca-arbitragem
 title: "Arbitration safety: what an arbitrator can and cannot guarantee"
 sidebar_position: 10
 ---
