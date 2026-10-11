@@ -80,6 +80,15 @@ for (const locale of config.i18n.locales) {
   if (page) {
     const html = fs.readFileSync(page, 'utf8');
     requireCondition(html.includes('incident-scenario'), `Incident decision selector missing: ${locale}`);
+    requireCondition(html.includes('<label for="incident-scenario">'), `Incident selector missing associated label: ${locale}`);
+    requireCondition(html.includes('Educational guidance only') || html.includes('Orientação educativa') || html.includes('Orientación educativa'), `Incident safety disclaimer missing: ${locale}`);
+  }
+  const homePath = config.baseUrl + relative;
+  const home = resolvePage(homePath);
+  requireCondition(Boolean(home), `Missing localized homepage: ${locale}`);
+  if (home) {
+    const html = fs.readFileSync(home, 'utf8');
+    requireCondition(html.includes('href="' + incidentPath + '"'), `Homepage missing incident guide link: ${locale}`);
   }
 }
 
