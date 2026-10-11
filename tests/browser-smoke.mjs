@@ -15,7 +15,7 @@ try {
       const page = await browser.newPage({viewport: {width, height: 800}});
       const response = await page.goto(base + locale.prefix + '/incident', {waitUntil: 'networkidle'});
       assert.equal(response?.status(), 200, 'Incident route HTTP status');
-      assert.match(await page.locator('h1').innerText(), new RegExp(locale.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+      assert.equal((await page.locator('h1').innerText()).includes(locale.title), true, 'Localized heading');
       const selector = page.locator('#incident-scenario');
       assert.equal(await selector.count(), 1);
       assert.equal(await page.locator('label[for="incident-scenario"]').count(), 1);
