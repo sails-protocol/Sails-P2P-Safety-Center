@@ -105,3 +105,6 @@ a:focus-visible,button:focus-visible {outline:2px solid var(--sails-support);out
 /* Keep long footer destinations within narrow mobile viewports. */
 .footer__link-item {overflow-wrap:anywhere;word-break:break-word}
 .footer__links, .footer__col {min-width:0}
+
+/* Skip navigation remains keyboard-accessible without forcing horizontal scroll. */
+.skipToContent_fXgn {max-width:calc(100vw - 2rem);white-space:normal;overflow-wrap:anywhere}
