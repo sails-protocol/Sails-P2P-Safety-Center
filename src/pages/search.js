@@ -9,13 +9,13 @@ const copy = {
   es: ['Buscar guías', 'Busca por riesgo, tema o palabra clave', 'No se encontraron resultados']
 };
 export default function SearchPage() {
-  const {i18n} = useDocusaurusContext();
+  const {i18n, siteConfig} = useDocusaurusContext();
   const [query, setQuery] = useState('');
   const [guides, setGuides] = useState([]);
   const [loadError, setLoadError] = useState(false);
-  const {siteConfig} = useDocusaurusContext();
   const indexUrl = siteConfig.baseUrl + 'knowledge/index.json';
   const [title, placeholder, empty] = copy[i18n.currentLocale] || copy.en;
+  const errorMessage = {en:'Search index unavailable. Please try again later.', 'pt-BR':'A pesquisa está indisponível. Tente novamente mais tarde.', es:'La búsqueda no está disponible. Inténtalo de nuevo más tarde.'}[i18n.currentLocale] || 'Search index unavailable.';
   useEffect(() => {
     let active = true;
     fetch(indexUrl).then(r => {if (!r.ok) throw Error('index unavailable'); return r.json();})
@@ -27,7 +27,7 @@ export default function SearchPage() {
     const needle = query.trim().toLocaleLowerCase();
     if (!needle) return [];
     return guides.filter(g => g.locale === i18n.currentLocale &&
-      [g.title, g.description, g.content].some(v => String(v || '').toLocaleLowerCase().includes(needle))).slice(0, 40);
+      [g.title, g.content].some(v => String(v || '').toLocaleLowerCase().includes(needle))).slice(0, 40);
   }, [query, guides, i18n.currentLocale]);
   return <Layout title={title}><main className="container margin-vert--lg">
     <h1>{title}</h1>
@@ -35,7 +35,7 @@ export default function SearchPage() {
     <input id="safety-search" type="search" value={query} onChange={e => setQuery(e.target.value)}
       placeholder={placeholder} autoFocus
       style={{display:'block',width:'100%',maxWidth:720,padding:14,margin:'12px 0 24px',borderRadius:8,border:'1px solid var(--ifm-color-emphasis-400)',background:'var(--ifm-background-color)',color:'var(--ifm-font-color-base)'}}/>
-    {loadError && <p role="alert">Search index unavailable. Please try again later.</p>}
+    {loadError && <p role="alert">{errorMessage}</p>}
     {query.trim() && !loadError && <div aria-live="polite">{matches.length === 0 ? <p>{empty}</p> :
       <ul>{matches.map(g => <li key={g.url} className="margin-bottom--md">
         <Link to={g.url}><strong>{g.title}</strong></Link>
