@@ -116,6 +116,19 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <section className="editorialSection editorialSituations" aria-labelledby="audiences-heading">
+          <div className="container editorialContainer">
+            <div className="editorialSectionHeading"><div><h2 id="audiences-heading">{t.audienceTitle}</h2></div></div>
+            <div className="editorialTopicGrid">
+              {t.audiences.map(([title,description,to]) => (
+                <Link className="editorialTopic" to={to} key={to}>
+                  <div className="editorialTopicTitle"><h3>{title}</h3></div>
+                  <p>{description}</p><span className="editorialTopicLink">{editorial.view} <SafetyIcon name="arrow"/></span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
         <section className="editorialSection editorialLibrary" aria-labelledby="library-heading">
           <div className="container editorialContainer">
             <div className="editorialSectionHeading"><div><p className="editorialSectionLabel">02 / {editorial.library}</p><Heading as="h2" id="library-heading">{editorial.library}</Heading><p>{editorial.libraryDesc}</p></div></div>
