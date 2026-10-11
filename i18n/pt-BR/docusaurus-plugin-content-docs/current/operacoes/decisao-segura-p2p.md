@@ -1,5 +1,6 @@
 ---
 id: decisao-segura-p2p
+slug: /decisao-segura-p2p
 title: "Segurança P2P: checklist rápido de decisão"
 ---
 
