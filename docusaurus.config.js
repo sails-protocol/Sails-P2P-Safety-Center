@@ -20,6 +20,7 @@ const config = {
     navbar: {title: 'Sails Safety Center', items: [
       {to: '/', label: 'Home', position: 'left', activeBaseRegex: '^/Sails-P2P-Safety-Center(?:/(?:pt-BR|es))?/?$'},
       {type: 'docSidebar', sidebarId: 'safetySidebar', position: 'left', label: 'Guides'},
+      {type: 'search', position: 'right'},
       {type: 'localeDropdown', position: 'right'},
       {href: 'https://github.com/sails-protocol/Sails-P2P-Safety-Center', label: 'GitHub', position: 'right'}
     ]},
