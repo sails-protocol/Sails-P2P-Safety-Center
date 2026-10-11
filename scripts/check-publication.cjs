@@ -71,6 +71,18 @@ for (const locale of config.i18n.locales) {
   }
 }
 
+// Incident decision guide is a React page, not a docs article: gate each locale explicitly.
+for (const locale of config.i18n.locales) {
+  const relative = locale === config.i18n.defaultLocale ? '' : locale + '/';
+  const incidentPath = config.baseUrl + relative + 'incident';
+  const page = resolvePage(incidentPath);
+  requireCondition(Boolean(page), `Missing incident decision page: ${locale}`);
+  if (page) {
+    const html = fs.readFileSync(page, 'utf8');
+    requireCondition(html.includes('incident-scenario'), `Incident decision selector missing: ${locale}`);
+  }
+}
+
 let linksChecked = 0;
 for (const file of walk(build).filter(file => file.endsWith('.html'))) {
   const html = fs.readFileSync(file, 'utf8');
