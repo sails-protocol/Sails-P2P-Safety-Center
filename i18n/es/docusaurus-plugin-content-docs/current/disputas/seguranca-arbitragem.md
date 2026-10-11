@@ -1,5 +1,6 @@
 ---
 id: seguranca-arbitragem
+slug: /seguranca-arbitragem
 title: "Seguridad en arbitraje: límites y responsabilidades"
 sidebar_position: 10
 ---
