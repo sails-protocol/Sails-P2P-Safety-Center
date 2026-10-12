@@ -1,0 +1,28 @@
+name: Safety Center live production smoke
+on:
+  workflow_run:
+    workflows: ["Build and deploy Docusaurus"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  live-browser:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright without modifying lockfile
+        run: |
+          npm ci --no-audit --no-fund
+          npm install --no-save --package-lock=false playwright
+          npx playwright install --with-deps chromium
+      - name: Verify public GitHub Pages with real Chromium
+        env:
+          SAFETY_BASE_URL: https://sails-protocol.github.io/Sails-P2P-Safety-Center
+        run: node tests/browser-smoke.mjs

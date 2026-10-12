@@ -27,7 +27,13 @@ try {
         assert.equal(await link.count(), 1, 'Accessible result link');
         assert.match(await link.getAttribute('href'), /\/guides\//);
       }
-      await page.keyboard.press('Tab');
+      await selector.focus();
+      assert.equal(await selector.evaluate(el => document.activeElement === el), true, 'Selector must receive keyboard focus');
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('Enter');
+      assert.equal(await selector.evaluate(el => document.activeElement === el), true, 'Selector remains focusable after keyboard input');
+      const result = page.locator('section[aria-live="polite"]');
+      assert.equal(await result.count(), 1, 'Result remains accessible after keyboard input');
       checks++;
       await page.close();
     }
