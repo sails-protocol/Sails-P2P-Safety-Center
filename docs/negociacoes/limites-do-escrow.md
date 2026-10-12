@@ -3,11 +3,11 @@ title: What escrow does and does not protect
 ---
 # What escrow does and does not protect
 
-Escrow may establish conditions for moving cryptoassets during a trade. **It does not control the buyer's or seller's bank.**
+Escrow may establish conditions for moving cryptoassets during a trade. **It does not control external banks, payment providers, or wallets used by the parties.**
 
 ## Do not assume escrow means
-- Verification of the actual owner of a bank account.
-- Automatic confirmation of final bank-transfer settlement.
+- Verification of the actual owner or controller of an external payment account or destination.
+- Automatic confirmation that an external payment has settled finally.
 - Elimination of fraud, coercion, chargebacks, or disputes.
 - Guaranteed recovery of money sent to third parties.
 
