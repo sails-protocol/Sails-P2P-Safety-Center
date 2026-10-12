@@ -28,18 +28,21 @@ npm run serve
 
 Never publish personally identifying payment details, secrets, private dispute evidence or unverified security guarantees. See [Editorial Policy](docs/EDITORIAL_POLICY.md) and [Contributing](CONTRIBUTING.md).
 
-## Release status
+## Published release status
 
-**Foundation merged into `main`.** The locked-dependency build passed. After transferring the repository to the organization, verify **Settings → Pages → Build and deployment → Source: GitHub Actions** and confirm a successful deployment on `main`. The deployment runs on pushes to `main` only. Intended URL: https://sails-protocol.github.io/Sails-P2P-Safety-Center/.
+**V2.2 is published** on GitHub Pages at https://sails-protocol.github.io/Sails-P2P-Safety-Center/.
+
+- The public site supports EN, PT-BR and ES, including the incident triage page.
+- On main commit `12e6a863bca83b9484be0830f7e10a939e09beb5`, Docusaurus build/deploy, local Chromium smoke with automated axe-core WCAG 2.1 A/AA checks, and live production Chromium smoke passed (runs `38189551071`, `38189551112`, `38189656017`).
+- The product owner reported successful manual desktop and mobile checks in all three languages.
+- Human keyboard-only and screen-reader sign-off is still tracked in [issue #21](https://github.com/sails-protocol/Sails-P2P-Safety-Center/issues/21). Automated checks do not establish full WCAG conformance.
+- V2.3 discovery is tracked in [issue #25](https://github.com/sails-protocol/Sails-P2P-Safety-Center/issues/25).
+
+### Publication rules
+
+Only a push to `main` deploys the GitHub Pages site. A green PR build is not a production deployment. Before merging, verify exact-head CI and the [publication checklist](docs/RELEASE_CHECKLIST.md). After merging, verify main deployment and live-production smoke. Keep editorial claims limited to evidence and do not imply unimplemented protocol guarantees.
 
 ## License
 
 The repository's MIT license applies to software unless otherwise specified. A separate content license for educational articles will be selected before publication.
 
-## V2 preview versus published site
-
-The V2 visual redesign is currently proposed in [draft PR #4](https://github.com/sails-protocol/Sails-P2P-Safety-Center/pull/4), on `feat/safety-center-v2-visual`. A green pull-request build **does not** change the public GitHub Pages website. The workflow deliberately skips artifact upload and deployment for pull requests; only a push to `main` can deploy through GitHub Actions.
-
-To review without publishing, check out the PR branch locally and run `npm ci && npm run build && npm run serve`. Review `/`, `/pt-BR/`, `/es/`, their `/guides/` routes, navigation, mobile layouts and keyboard focus. The local server uses the configured GitHub Pages base path `/Sails-P2P-Safety-Center/`.
-
-**Release gate:** verify current-head CI, perform visual/accessibility and editorial review, approve the PR explicitly, then merge to `main` only when publication is authorized. Do not interpret a successful build as proof of a browser-level visual review.
