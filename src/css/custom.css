@@ -115,3 +115,6 @@ a:focus-visible,button:focus-visible {outline:2px solid var(--sails-support);out
 /* Hide off-canvas skip navigation until keyboard focus, then show inside viewport. */
 .skipToContent_fXgn:not(:focus){transform:translate3d(-200vw,-200vh,0)}
 .skipToContent_fXgn:focus{left:1rem;right:auto;transform:none;max-width:calc(100vw - 2rem)}
+
+/* WCAG 2.1 AA: numbered editorial navigation needs readable small-text contrast. */
+.editorialIndex{color:#555d68}
