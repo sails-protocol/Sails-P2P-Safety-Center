@@ -18,11 +18,11 @@ title: Presión, enlaces falsos y phishing
 
 ## Cambios de canal y de datos de pago
 
-Usar otro canal no demuestra por sí solo un fraude. El riesgo aumenta cuando el cambio incluye una nueva cuenta, clave PIX, destinatario o una petición de ignorar las instrucciones registradas en la operación.
+Usar otro canal no demuestra por sí solo un fraude. El riesgo aumenta cuando el cambio incluye un nuevo destino de pago, cambios en los datos de un método previamente acordado, destinatario o una petición de ignorar las instrucciones registradas en la operación.
 
 1. Compara las nuevas instrucciones con los términos registrados.
 2. No realices otro pago para “corregir” el anterior solo porque lo pide un mensaje.
-3. Verifica la diferencia por el canal autenticado de la aplicación y, si es necesario, mediante el soporte oficial del banco.
+3. Verifica la diferencia por el canal autenticado de la aplicación y, si es necesario, mediante el soporte oficial del banco, proveedor de pagos o servicio de billetera correspondiente.
 4. Conserva las dos versiones de las instrucciones y las horas de los mensajes para su revisión.
 
 Conocer detalles de una operación no demuestra que alguien sea personal de soporte ni que esté autorizado a cambiar el destinatario.
