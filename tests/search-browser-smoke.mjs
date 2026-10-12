@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 
 const base = process.env.SAFETY_BASE_URL || 'http://127.0.0.1:4173/Sails-P2P-Safety-Center';
 const locales = [
-  {prefix:'', label:'Search guides', empty:'No results found', error:'Search index unavailable'},
-  {prefix:'/pt-BR', label:'Buscar guias', empty:'Nenhum resultado encontrado', error:'A pesquisa está indisponível'},
-  {prefix:'/es', label:'Buscar guías', empty:'No se encontraron resultados', error:'La búsqueda no está disponible'}
+  {prefix:'', label:'Search guides', empty:'No results found', error:'Search index unavailable', loading:'Loading guides…'},
+  {prefix:'/pt-BR', label:'Buscar guias', empty:'Nenhum resultado encontrado', error:'A pesquisa está indisponível', loading:'Carregando guias…'},
+  {prefix:'/es', label:'Buscar guías', empty:'No se encontraron resultados', error:'La búsqueda no está disponible', loading:'Cargando guías…'}
 ];
 const browser = await chromium.launch({headless:true});
 let checks = 0;
@@ -40,8 +40,41 @@ try {
     assert.equal(await brokenPage.locator('[aria-live="polite"] a').count(), 0);
     checks++;
     await brokenContext.close();
+    // Deterministic delayed response proves the visible loading state and its transition.
+    const delayedContext = await browser.newContext({viewport:{width:375,height:812}});
+    let releaseIndex;
+    const indexGate = new Promise(resolve => {releaseIndex = resolve;});
+    await delayedContext.route('**/knowledge/index.json', async route => {
+      await indexGate;
+      await route.continue();
+    });
+    const delayedPage = await delayedContext.newPage();
+    await delayedPage.goto(base + locale.prefix + '/search', {waitUntil:'domcontentloaded'});
+    await delayedPage.getByRole('status').getByText(locale.loading, {exact:true}).waitFor();
+    releaseIndex();
+    await delayedPage.getByRole('status').waitFor({state:'detached'});
+    await delayedContext.close();
+    checks++;
+
+    // Title-only and body-only matches must both be discoverable in the current locale.
+    const matchContext = await browser.newContext({viewport:{width:375,height:812}});
+    await matchContext.route('**/knowledge/index.json', route => route.fulfill({status:200, contentType:'application/json', body:JSON.stringify({guides:[
+      {locale:locale.prefix === '' ? 'en' : locale.prefix.slice(1),title:'unique-title-93812',content:'ordinary body',url:'https://sails-protocol.github.io/Sails-P2P-Safety-Center/guides/title-test'},
+      {locale:locale.prefix === '' ? 'en' : locale.prefix.slice(1),title:'ordinary title',content:'unique-body-47193',url:'https://sails-protocol.github.io/Sails-P2P-Safety-Center/guides/body-test'}
+    ]})}));
+    const matchPage = await matchContext.newPage();
+    await matchPage.goto(base + locale.prefix + '/search', {waitUntil:'networkidle'});
+    await matchPage.locator('#safety-search').fill('unique-title-93812');
+    await matchPage.locator('[aria-live="polite"] a[href$="/title-test"]').waitFor();
+    assert.equal(await matchPage.locator('[aria-live="polite"] a').count(), 1);
+    await matchPage.locator('#safety-search').fill('unique-body-47193');
+    await matchPage.locator('[aria-live="polite"] a[href$="/body-test"]').waitFor();
+    assert.equal(await matchPage.locator('[aria-live="polite"] a').count(), 1);
+    checks += 2;
+    await matchContext.close();
+
   }
-  console.log(JSON.stringify({status:'PASS',checks,locales:3,scenarios:['results','no-results','index-failure']}));
+  console.log(JSON.stringify({status:'PASS',checks,locales:3,scenarios:['results','no-results','index-failure','loading','title-match','content-match']}));
 } finally {
   await browser.close();
 }
