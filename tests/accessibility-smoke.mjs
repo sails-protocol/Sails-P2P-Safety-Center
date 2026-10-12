@@ -9,7 +9,8 @@ let checks = 0;
 try {
   for (const locale of locales) {
     for (const path of ['/', '/incident']) {
-      const page = await browser.newPage({viewport: {width: 375, height: 812}});
+      const context = await browser.newContext({viewport: {width: 375, height: 812}});
+      const page = await context.newPage();
       const url = base + locale + path;
       const response = await page.goto(url, {waitUntil: 'networkidle'});
       assert.equal(response?.status(), 200, 'HTTP 200: ' + url);
@@ -20,7 +21,7 @@ try {
       }));
       assert.deepEqual(violations, [], 'WCAG axe violations at ' + url + ': ' + JSON.stringify(violations));
       checks++;
-      await page.close();
+      await context.close();
     }
   }
   console.log(JSON.stringify({status:'PASS',tool:'axe-core',checks,locales:3,pages:['/','/incident']}));
