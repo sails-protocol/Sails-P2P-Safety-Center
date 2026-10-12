@@ -19,14 +19,17 @@ try {
     const input = page.locator('input#safety-search');
     assert.equal(await input.count(), 1);
     assert.equal(await page.locator('label[for="safety-search"]').count(), 1);
-    await input.fill('comprovantes');
+    await input.focus();
+    assert.equal(await input.evaluate(el => document.activeElement === el), true, 'Search input accepts keyboard focus');
+    await page.keyboard.type('comprovantes');
+    assert.equal(await input.inputValue(), 'comprovantes', 'Search accepts keyboard typing');
     await page.locator('[aria-live="polite"] a').first().waitFor();
     assert.ok(await page.locator('[aria-live="polite"] a').count() > 0, 'Index search results');
     const result = page.locator('[aria-live="polite"] a').first();
     assert.match(await result.getAttribute('href'), /\/guides\//);
     await input.fill('zzz-no-matching-guide-928374');
     await page.getByText(locale.empty, {exact:true}).waitFor();
-    checks += 2;
+    checks += 3;
     await context.close();
 
     const brokenContext = await browser.newContext({viewport:{width:375,height:812}});

@@ -8,7 +8,7 @@ const browser = await chromium.launch({headless: true});
 let checks = 0;
 try {
   for (const locale of locales) {
-    for (const path of ['/', '/incident']) {
+    for (const path of ['/', '/incident', '/search']) {
       const context = await browser.newContext({viewport: {width: 375, height: 812}});
       const page = await context.newPage();
       const url = base + locale + path;
