@@ -36,5 +36,7 @@ jobs:
           exit 1
       - name: Verify real Chromium navigation and mobile viewports
         run: node tests/browser-smoke.mjs
-      - name: Verify localized search results, empty state and index failure\n        run: node tests/search-browser-smoke.mjs\n      - name: Audit localized pages against WCAG 2.1 A and AA rules
+      - name: Verify localized search results, empty state and index failure
+        run: node tests/search-browser-smoke.mjs
+      - name: Audit localized pages against WCAG 2.1 A and AA rules
         run: node tests/accessibility-smoke.mjs
