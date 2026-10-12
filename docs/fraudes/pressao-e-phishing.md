@@ -18,11 +18,11 @@ title: Pressure tactics, fake links, and phishing
 
 ## Changes to the channel and payment details
 
-Using another channel does not, by itself, establish fraud. Risk increases when the move comes with a new account, PIX key, recipient or request to ignore the instructions recorded in the trade.
+Using another channel does not, by itself, establish fraud. Risk increases when the move comes with a new payment destination, changed details for a previously agreed payment method, recipient or request to ignore the instructions recorded in the trade.
 
 1. Compare the new instructions with the recorded terms.
 2. Do not make another payment to “correct” an earlier one solely because a message asks you to.
-3. Verify the discrepancy through the application's authenticated channel and, when needed, official bank support.
+3. Verify the discrepancy through the application's authenticated channel and, when needed, official support of the relevant bank, payment provider, or wallet service.
 4. Preserve both versions of the instructions and message timestamps for review.
 
 Knowing details of a trade does not prove that someone is support staff or authorized to change the recipient.
