@@ -1,14 +1,14 @@
 ---
-title: Cuentas de terceros y datos bancarios comprometidos
+title: Cuentas de terceros y datos de pago comprometidos
 ---
-# Cuentas de terceros y datos bancarios comprometidos
+# Cuentas de terceros y datos de pago comprometidos
 
 **Situación:** Los datos de pago pertenecen a una persona inesperada o a una cuenta posiblemente controlada por terceros.
 
 ## Señales de alerta
-- Cambio repentino de destinatario o clave PIX.
+- Cambio repentino del destinatario, destino o datos del método de pago previamente registrado o acordado.
 - Solicitud de pago o reembolso a un amigo o empresa no acordada.
-- Cambio de cuenta justo antes de liquidar.
+- Cambio del destino de pago justo antes de liquidar.
 
 ## Cómo actuar
 1. Compara al destinatario con las instrucciones acordadas.
