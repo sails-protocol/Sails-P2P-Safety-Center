@@ -19,11 +19,11 @@ title: Pressão, links falsos e phishing
 
 ## Mudança de canal e de dados de pagamento
 
-O uso de outro canal, por si só, não comprova fraude. O risco aumenta quando a mudança vem acompanhada de uma nova conta, chave PIX, destinatário ou pedido para ignorar as instruções registradas na negociação.
+O uso de outro canal, por si só, não comprova fraude. O risco aumenta quando a mudança vem acompanhada de um novo destino de pagamento, alteração dos dados de um método previamente acordado, destinatário ou pedido para ignorar as instruções registradas na negociação.
 
 1. Compare a nova instrução com os termos já registrados.
 2. Não faça um novo pagamento para “corrigir” o anterior apenas por solicitação em mensagem.
-3. Confirme a divergência pelo canal autenticado da aplicação e, quando necessário, pelo atendimento oficial do banco.
+3. Confirme a divergência pelo canal autenticado da aplicação e, quando necessário, pelo suporte oficial do banco, provedor de pagamento ou serviço de carteira aplicável.
 4. Preserve as duas versões das instruções e os horários das mensagens para análise.
 
 Uma pessoa conhecer detalhes da negociação não prova que ela seja suporte ou que tenha autorização para alterar o destinatário.

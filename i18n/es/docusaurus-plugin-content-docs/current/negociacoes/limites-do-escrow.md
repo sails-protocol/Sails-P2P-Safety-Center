@@ -3,11 +3,11 @@ title: Qué protege y qué no protege el escrow
 ---
 # Qué protege y qué no protege el escrow
 
-El escrow puede establecer condiciones para mover criptoactivos durante una operación. **No controla el banco del comprador ni el del vendedor.**
+El escrow puede establecer condiciones para mover criptoactivos durante una operación. **No controla los bancos, proveedores de pago ni billeteras externos utilizados por las partes.**
 
 ## No supongas que escrow significa
-- Verificación de la titularidad real de una cuenta bancaria.
-- Confirmación automática de liquidación definitiva de una transferencia.
+- Verificación de la titularidad o del control real de una cuenta o destino de pago externo.
+- Confirmación automática de la liquidación definitiva de un pago externo.
 - Eliminación del fraude, la coacción, los contracargos o las disputas.
 - Recuperación garantizada del dinero enviado a terceros.
 
