@@ -6,9 +6,9 @@ title: Mule accounts and compromised payment details
 **Scenario:** payment details belong to an unexpected person or an account that may be controlled by someone other than the apparent trader.
 
 ## Warning signs
-- A sudden change in recipient, account number, or PIX key.
+- A sudden change in the recipient, destination, or details of a payment method previously registered or agreed for the trade.
 - An explanation that a friend, employee, or unrelated business must receive or refund the funds.
-- A previously used payment account is replaced immediately before settlement.
+- A previously agreed payment destination is replaced immediately before settlement.
 
 ## What to do
 1. Compare the actual payment recipient with the agreed instructions before sending funds.
