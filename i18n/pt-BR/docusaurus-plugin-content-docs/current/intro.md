@@ -22,3 +22,5 @@ Explore os guias no menu lateral. As orientações não substituem as regras do 
 - [Disputas e evidências](./disputas/preservar-evidencias.md)
 - [Identidade e privacidade](./identidade/conta-comprometida.md)
 - [Operações profissionais](./operacoes/checklist-antes-de-negociar.md)
+
+- [Entenda o Sails Protocol e seus limites de segurança](./operacoes/entendendo-o-protocolo.md)

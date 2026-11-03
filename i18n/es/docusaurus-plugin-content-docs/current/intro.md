@@ -21,3 +21,5 @@ Explora las guías en el menú lateral. Estas recomendaciones no sustituyen las 
 - [Disputas y pruebas](./disputas/preservar-evidencias.md)
 - [Identidad y privacidad](./identidade/conta-comprometida.md)
 - [Operaciones profesionales](./operacoes/checklist-antes-de-negociar.md)
+
+- [Comprender Sails Protocol y sus límites de seguridad](./operacoes/entendendo-o-protocolo.md)
