@@ -1,0 +1,35 @@
+# GitHub source traceability — Safety Center Day 0
+
+**Purpose:** lightweight editorial dependency map. This file is not a protocol specification, a new backlog, or a production-approval record.
+
+**Normative source:** [Sails Protocol](https://github.com/sails-protocol/Sails-Protocol). **Execution/evidence authority:** [Day 0 gate issue #105](https://github.com/sails-protocol/Sails-Protocol/issues/105), current `docs/BACKLOG.md`, applicable accepted ADRs/RFCs, Gatekeeper verdicts and exact integrated implementation evidence. Check the **current** sources when revising; links to `main` are moving pointers, not immutable proof.
+
+**Audit baseline:** Safety Center main `7ebbe23d7ea55095a32db47ba58dea40d8d4d10f`; Sails Protocol main tree `14940054e0e2d6955167fa917b666960adec5608` (2026-11-03 review). Historical statements in the master backlog must be reconciled with its later corrections and live gate evidence.
+
+| Subject | Existing public coverage | Source of truth / watch points | Publication rule |
+| --- | --- | --- | --- |
+| Escrow and release | `docs/negociacoes/limites-do-escrow.md`, `docs/negociacoes/conferir-envio.md` | [Protocol specification](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/PROTOCOL_SPECIFICATION.md), [RFC-015](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/rfcs/RFC-015-dual-authorization-escrow-release.md), [ADR-005](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/adr/ADR-005-ruling-generation-economic-disposition-authority.md) | Explain conceptual limits; do not assert universal release authority, recovery or finality. |
+| Disputes, evidence, recovery | `docs/disputas/`, `docs/operacoes/resultado-desconhecido.md`, `docs/operacoes/resposta-a-incidentes.md` | [RFC-021](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/rfcs/RFC-021-market-based-arbitration-and-payment-trust.md), [ADR-005](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/adr/ADR-005-ruling-generation-economic-disposition-authority.md), [Issue #105](https://github.com/sails-protocol/Sails-Protocol/issues/105) | No universal deadlines, appeals, node failover, arbitration or recovery guarantee without accepted evidence. |
+| Arbitrator authority and economic rulings | `docs/disputas/seguranca-arbitragem.md`, `docs/fraudes/falsa-arbitragem.md` | [ADR-003](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/adr/ADR-003-rail-scoped-arbitration-policy.md), [ADR-005](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/adr/ADR-005-ruling-generation-economic-disposition-authority.md), [RFC-021](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/rfcs/RFC-021-market-based-arbitration-and-payment-trust.md) | ADR-003 was marked “Proposed for CTO Gate” and RFC-021 “Proposed” at audit. No market-arbitration/slashing production claim. |
+| Reputation and vouch | `docs/fraudes/reputation-farming.md`, `docs/fraudes/pressao-por-avaliacao.md` | [Sybil mitigation](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/security/SYBIL_MITIGATION.md), [RFC-021](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/rfcs/RFC-021-market-based-arbitration-and-payment-trust.md), [RFC-022](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/rfcs/RFC-022-lightning-substrate-reputation.md) | Vouch is not a guarantee of trust; RFC-022 remains Draft; no claim of globally portable or arbiterless deployed reputation. |
+| Decentralized identity | `docs/identidade/conta-comprometida.md` | [RFC-001](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/rfcs/RFC-001-participant-model.md), [ADR-001](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/adr/ADR-001-day0-multi-operator-network.md), [Issue #105](https://github.com/sails-protocol/Sails-Protocol/issues/105) | Economic identity, participant transport identity, operational node identity and economic recipient are distinct. No universal identity/recovery claims. |
+| Networks, settlement and payment instructions | `docs/pagamentos/`, `docs/operacoes/conciliacao-de-pagamentos.md` | [ADR-002](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/adr/ADR-002-asset-settlement-rail-adapter-provider-architecture.md), [RFC-019](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/rfcs/RFC-019-settlement-custody-reference-vs-normative.md), [Issue #105](https://github.com/sails-protocol/Sails-Protocol/issues/105) | Asset ≠ network/rail ≠ provider; roadmap ≠ SDK representability ≠ beta enabled ≠ production. |
+| Protocol overview / modules | `docs/intro.md` (brief educational entry, not a complete module reference) | [README](https://github.com/sails-protocol/Sails-Protocol/blob/main/README.md), [Protocol specification](https://github.com/sails-protocol/Sails-Protocol/blob/main/docs/PROTOCOL_SPECIFICATION.md), [Issue #105](https://github.com/sails-protocol/Sails-Protocol/issues/105) | Defer detailed module claims until evidence and editorial scope are approved; avoid turning Safety Center into a duplicate developer reference. |
+
+## Minimal review trigger
+
+1. On a **relevant merged PR to Sails Protocol `main`**, identify the affected SPEC/RFC/ADR and subjects above. A draft/open PR is context only.
+2. Read the exact merged diff, its authority status, linked issue and Gatekeeper/release evidence. Classify each claim: **conceptual guidance / approved design / implemented in repository / homologated for beta / authorized for production**. These states must not be collapsed.
+3. If public guidance is materially wrong or incomplete, update **the existing article first** in EN/PT-BR/ES. Preserve slugs, navigation, design and safety caveats; create a new guide only for a distinct user need.
+4. In the Safety Center PR, record source URLs, source SHA, affected pages, claim status, and tests. Check generated knowledge indexes, localized routes, search, links and accessibility automation.
+5. Never auto-publish a technical claim just because CI is green. Merge/deploy only with authorization, then verify exact main deployment and public smoke.
+6. Record unresolved protocol decisions **in their existing Sails Protocol issue / Project #3**, not here. Editorial issues in this repository may track only article corrections and review evidence.
+
+## Explicit pending dependencies at audit
+
+- [PR #576](https://github.com/sails-protocol/Sails-Protocol/pull/576) (Lote 2 composition): **open**, not a public feature.
+- [PR #577](https://github.com/sails-protocol/Sails-Protocol/pull/577) (ADR-005 disputed escrow guard): **open**, not a homologated feature.
+- [Issue #105](https://github.com/sails-protocol/Sails-Protocol/issues/105): **open** multi-operator/partner-beta evidence gate. A merged change does not close this gate.
+- [Safety Center issue #21](https://github.com/sails-protocol/Sails-P2P-Safety-Center/issues/21): human keyboard/screen-reader sign-off remains separate from automated tests.
+
+**No automatic synchronization or production deploy is introduced.**
