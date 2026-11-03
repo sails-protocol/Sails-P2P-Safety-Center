@@ -21,3 +21,5 @@ Explore the guides in the sidebar. This guidance does not replace payment-method
 - [Disputes and evidence](./disputas/preservar-evidencias.md)
 - [Identity and privacy](./identidade/conta-comprometida.md)
 - [Professional operations](./operacoes/checklist-antes-de-negociar.md)
+
+- [Understanding Sails Protocol and its safety boundaries](./operacoes/entendendo-o-protocolo.md)
