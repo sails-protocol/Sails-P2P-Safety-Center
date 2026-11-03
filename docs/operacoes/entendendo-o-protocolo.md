@@ -1,5 +1,5 @@
 ---
-title: Understanding Sails Protocol: trust and safety boundaries
+title: "Understanding Sails Protocol: trust and safety boundaries"
 ---
 # Understanding Sails Protocol: trust and safety boundaries
 
